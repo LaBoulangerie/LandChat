@@ -1,0 +1,38 @@
+name: LandsChat
+version: ${project.version}
+main: net.laboulangerie.landschat.LandsChat
+api-version: 1.21
+authors: [PainOchoco, Grôle]
+depend: [Lands, PlaceholderAPI]
+softdepend: [DiscordSRV]
+commands:
+
+permissions:
+    landschat.format.color:
+        default: op
+    landschat.format.bold:
+        default: op
+    landschat.format.underline:
+        default: op
+    landschat.format.italic:
+        default: op
+    landschat.format.strikethrough:
+        default: op
+    landschat.format.obfuscated:
+        default: op
+    landschat.format.rainbow:
+        default: op
+    landschat.format.all:
+        default: op
+    landschat.*:
+        default: op
+        children:
+            landschat.format: true
+            landschat.format.color: true
+            landschat.format.bold: true
+            landschat.format.underline: true
+            landschat.format.italic: true
+            landschat.format.strikethrough: true
+            landschat.format.obfuscated: true
+            landschat.format.rainbow: true
+            landschat.format.all: true
