@@ -27,7 +27,7 @@ public class LandsChatListener implements Listener {
 
     public LandsChatListener() {
         this.townyChatRenderer = LandsChat.PLUGIN.getTownyChatRenderer();
-        this.landsAPI = LandsChat.landsAPI;
+        this.landsAPI = LandsIntegration.of(LandsChat.PLUGIN);
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

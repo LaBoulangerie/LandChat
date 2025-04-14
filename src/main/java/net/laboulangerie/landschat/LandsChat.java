@@ -17,6 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import github.scarsz.discordsrv.DiscordSRV;
 import net.laboulangerie.landschat.core.ComponentRenderer;
 import net.laboulangerie.landschat.core.LandsChatRenderer;
+import net.laboulangerie.landschat.expansion.LandsChatExpansion;
 import net.laboulangerie.landschat.listeners.DiscordHook;
 import net.laboulangerie.landschat.listeners.MiscListener;
 import net.laboulangerie.landschat.listeners.LandsChatListener;
@@ -54,6 +55,10 @@ public class LandsChat extends JavaPlugin {
         } else {
             this.registerListeners();
         }
+
+        landsAPI = LandsIntegration.of(PLUGIN);
+
+        new LandsChatExpansion().register();
 
         getLogger().info("Plugin started");
     }

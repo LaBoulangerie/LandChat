@@ -46,7 +46,7 @@ public class LandsChatRenderer implements ChatRenderer.ViewerUnaware {
         this.componentRenderer = LandsChat.PLUGIN.getComponentRenderer();
     }
 
-    private Component buildMessage(@NotNull Player source, Component message) {
+    private Component buildMessage(@NotNull Player source, Component message, String format) {
         String plainText = PlainTextComponentSerializer.plainText().serialize(message);
         censorString(plainText);
 
@@ -69,17 +69,13 @@ public class LandsChatRenderer implements ChatRenderer.ViewerUnaware {
         resolvers.add(Placeholder.component("message", message));
         resolvers.add(Placeholder.component("username", source.name()));
 
-        return componentRenderer.parse(source, plainText, TagResolver.resolver(resolvers));
+        return componentRenderer.parse(source, format, TagResolver.resolver(resolvers));
     }
 
     @Override
     public @NotNull Component render(@NotNull Player source, @NotNull Component sourceDisplayName,
             @NotNull Component message) {
-        return buildMessage(source, message);
-    }
-
-    public @NotNull Component spyRender(@NotNull Player source, @NotNull Component message) {
-        return buildMessage(source, message);
+        return buildMessage(source, message, LandsChat.PLUGIN.getConfig().getString("format"));
     }
 
     private String censorString(String string) {
