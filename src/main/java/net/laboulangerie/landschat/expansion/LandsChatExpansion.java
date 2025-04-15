@@ -42,19 +42,30 @@ public class LandsChatExpansion extends PlaceholderExpansion {
             Land land = landsAPI.getLandPlayer(player.getUniqueId()).getLands().stream().findFirst().orElse(null);
 
             if(land != null){
-                return "<white>[<aqua>" + land.getName().toUpperCase().replaceAll("[AÂÄEÊËIÎÏOÔÖUÛÜY]", "").substring(0, 4) + "<white>] ";
+                return "<white>[<aqua>" + tagFormat(land.getName()) + "<white>] ";
             } else {
                 return "";
             }
         } else if(params.equals("nationtag")) {
             try{
                 Nation nation = landsAPI.getLandPlayer(player.getUniqueId()).getLands().stream().findFirst().orElse(null).getNation();
-                return "<white>[<gold>" + nation.getName().toUpperCase().replaceAll("[AÂÄEÊËIÎÏOÔÖUÛÜY]", "").substring(0, 4) + "<white>] ";
-            } catch (Exception e) {
+                return "<white>[<gold>" + tagFormat(nation.getName()) + "<white>] ";
+            } catch (Exception e){
                 return "";
             }
         } else if(params.equals("nationmembers")) return ((Integer)landsAPI.getLandPlayer(player.getUniqueId()).getLands().stream().findFirst().orElse(null).getNation().getMembersAmount()).toString();
 
         return null;
+    }
+
+    private String tagFormat(String name){
+        String nameWithVowels = name.toUpperCase();
+        String nameNoVowels = name.toUpperCase().replaceAll("[AÂÄEÊËIÎÏOÔÖUÛÜY]", "");
+
+        if(nameNoVowels.length() >= 4) return nameNoVowels.substring(0, 4);
+        else if(nameWithVowels.length() >= 4) return nameWithVowels.substring(0, 4);
+        else if(nameWithVowels.length() == 3) return nameWithVowels.substring(0, 3);
+        else if(nameWithVowels.length() == 2) return nameWithVowels.substring(0, 2);
+        else return nameWithVowels.substring(0, 1);
     }
 }
