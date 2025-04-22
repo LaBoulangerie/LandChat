@@ -38,8 +38,7 @@ jobs:
           git config --global user.email 149737708+octocroissant[bot]@users.noreply.github.com
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git clone https://octocroissant[bot]:${{ secrets.PAT_TOKEN }}@github.com/LaBoulangerie/Server.git
-          mv *.jar LandsChat.jar
-          cp **.jar Server/plugins/
+          cp LandsChat.jar Server/plugins/
           cd Server
           git add .
           git commit -m "Update artifact from $GITHUB_REPOSITORY"
